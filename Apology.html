@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'm Sorry ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    #message {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 20px auto;
+      min-height: 80px;
+    }
+
+    button {
+      background: #fff;
+      color: #ff4b5c;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float 4s linear infinite;
+      color: #ff4b5c;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>I'm Sorry 💔</h1>
+  <div id="message"></div>
+
+  <div>
+    <button id="yesBtn">Yes, I forgive you ❤️</button>
+    <button id="noBtn">No 😢</button>
+  </div>
+
+  <div id="hearts"></div>
+
+  <script>
+    // Typing Effect
+    const text = "I know I messed up... but you mean the world to me. I never want to lose you. Will you forgive me?";
+    let i = 0;
+    function typing() {
+      if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 50);
+      }
+    }
+    typing();
+
+    // Hearts Animation
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.getElementById("hearts").appendChild(heart);
+
+      setTimeout(() => { heart.remove(); }, 5000);
+    }
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+      setInterval(createHeart, 300);
+      alert("Yay! Thank you my love ❤️");
+    });
+
+    // No Button Runs Away
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.floor(Math.random() * 300) - 150;
+      const y = Math.floor(Math.random() * 200) - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+</body>
+</html>
